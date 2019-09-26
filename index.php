@@ -21,6 +21,22 @@
 
     <body>
 
+        <!-- PHP CODE HERE -->
+        <div>
+            <?php
+                if (isset($_POST['register'])) {
+                    $firstName = $_POST["firstName"];
+                    $lastName = $_POST["lastName"];
+                    $email = $_POST["email"];
+                    $password = $_POST["password"];
+                    $phone = $_POST["phone"];
+
+                    echo $firstName . " " . $lastName . " " .$email. " " .$phone;
+            
+                }
+            ?>
+        </div>
+
         <!-- A Simple Basic Registration Form -->
         <!-- Registration Form -->
         <form action="index.php" method="POST">
