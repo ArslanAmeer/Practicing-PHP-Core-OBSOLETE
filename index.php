@@ -1,3 +1,9 @@
+<!-- PHP File Required / Include Here -->
+<?php
+    require_once("config.php");
+?>
+
+<!-- HTML DOCUMENT STARTS HERE -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +37,16 @@
                     $password = $_POST["password"];
                     $phone = $_POST["phone"];
 
-                    echo $firstName . " " . $lastName . " " .$email. " " .$phone;
+                    $sql = "INSERT INTO users(firstName, lastName, email, password, phone) VALUES (?,?,?,?,?)";
+                    $sqlstmnt = $db->prepare($sql);
+                    $result = $sqlstmnt->execute([$firstName, $lastName, $email, $password, $phone]);
+                    if ($result) {
+                        echo "Data Added Successfully!";
+                    } else 
+                    
+                    {
+                        echo "Error While Saving Data!";
+                    }
             
                 }
             ?>
