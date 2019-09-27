@@ -86,7 +86,12 @@
             </div>
         </form>
 
-
+        <!-- JavaScript -->
+        <script>
+        $(document).ready(() => {
+            alert("HELLO")
+        });
+        </script>
     </body>
 
 </html>
