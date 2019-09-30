@@ -21,7 +21,7 @@
         <!-- A Simple Basic Registration Form -->
         <!-- Registration Form -->
         <div>
-            <form id="regForm" action="register.php" method="post">
+            <form id="regForm">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
@@ -56,7 +56,7 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
         <script type="text/javascript">
         $(() => {
             $("#register_btn").click(function(e) {
