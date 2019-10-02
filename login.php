@@ -1,6 +1,8 @@
 <!-- PHP File Required / Include Here -->
 <?php
-    require_once("config.php");
+session_start();
+if(isset($_SESSION['userLogin']))
+    header("Location: index.php");
 ?>
 
 <!-- HTML DOCUMENT STARTS HERE -->
@@ -91,7 +93,7 @@
                                     onClose: () => {
                                         $('#regForm').trigger("reset");
                                         setTimeout(
-                                            "window.location.href = 'register.php'",
+                                            "window.location.href = 'index.php'",
                                             2000);
                                     }
                                 });
