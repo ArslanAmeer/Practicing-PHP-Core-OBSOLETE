@@ -47,7 +47,7 @@ if(!isset($_SESSION['userLogin']))
                             <a class="nav-link" href="register.php">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Logout</a>
+                            <a class="nav-link" href="logout_Process.php">Logout</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="portfolio-item.html">Project</a>
