@@ -32,25 +32,25 @@
                                         <h3 class="login-heading mb-4">Welcome To Demo Login</h3>
                                         <form id="login-form">
                                             <div class="form-label-group">
-                                                <input type="email" id="inputEmail" class="form-control"
+                                                <input type="email" id="email" name="email" class="form-control"
                                                     placeholder="Email address" required autofocus>
                                                 <label for="inputEmail">Email address</label>
                                             </div>
 
                                             <div class="form-label-group">
-                                                <input type="password" id="inputPassword" class="form-control"
-                                                    placeholder="Password" required>
+                                                <input type="password" id="password" name="password"
+                                                    class="form-control" placeholder="Password" required>
                                                 <label for="inputPassword">Password</label>
                                             </div>
 
                                             <div class="custom-control custom-checkbox mb-3">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                                                 <label class="custom-control-label" for="customCheck1">Remember
-                                                    password</label>
+                                                    Password</label>
                                             </div>
                                             <button
                                                 class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-                                                type="submit">Sign in</button>
+                                                type="submit" id="login">Sign in</button>
                                             <div class="text-center">
                                                 <a class="small" href="#">Forgot password?</a></div>
                                         </form>
@@ -63,47 +63,51 @@
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
         <script type="text/javascript">
         $(() => {
-            $("#register_btn").click(function(e) {
+            $("#login").click(function(e) {
                 var valid = this.form.checkValidity();
-                debugger;
                 if (valid) {
-                    var firstname = $("#firstName").val();
-                    var lastname = $("#lastName").val();
                     var email = $("#email").val();
                     var password = $("#password").val();
-                    var phone = $("#phone").val();
-
                     e.preventDefault(e);
 
                     $.ajax({
                         type: 'POST',
-                        url: 'register.php',
+                        url: 'login_Process.php',
                         data: {
-                            firstName: firstname,
-                            lastName: lastname,
                             email: email,
                             password: password,
-                            phone: phone
                         },
                         success: function(data) {
-                            Swal.fire({
-                                'title': 'Successful',
-                                'text': data,
-                                'type': 'success',
-                                onClose: () => {
-                                    $('#regForm').trigger("reset");
-                                }
-                            });
+                            if ($.trim(data) === '1') {
+                                Swal.fire({
+                                    'title': 'Successful',
+                                    'text': data,
+                                    'type': 'success',
+                                    onClose: () => {
+                                        $('#regForm').trigger("reset");
+                                        setTimeout(
+                                            "window.location.href = 'register.php'",
+                                            2000);
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    'title': 'ERROR',
+                                    'text': data,
+                                    'type': 'error',
 
+                                });
+                            }
                         },
                         error: function(e) {
                             Swal.fire({
                                 'title': 'Error',
-                                'text': 'There were errors while saving the data',
+                                'text': 'There were errors while Login',
                                 'type': 'error'
                             })
                         }
