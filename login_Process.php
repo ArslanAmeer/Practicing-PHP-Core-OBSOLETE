@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
     require_once("config.php");
 ?>
 
@@ -17,9 +17,9 @@ session_start();
             $user = $sqlstmnt->fetch(PDO::FETCH_ASSOC);
             if($sqlstmnt->rowCount() > 0){
                 $_SESSION['userLogin'] = $user;
-                echo "1";
+                echo "Login Successfull";
             }else{
-                echo "No User Found!";
+                echo "No User Found! or REGISTER";
             }
         } else 
         

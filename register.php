@@ -73,7 +73,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: 'register.php',
+                        url: 'register_Process.php',
                         data: {
                             firstName: firstname,
                             lastName: lastname,
@@ -84,10 +84,11 @@
                         success: function(data) {
                             Swal.fire({
                                 'title': 'Successful',
-                                'text': data,
+                                'text': data + "! Verify Your Email",
                                 'type': 'success',
                                 onClose: () => {
                                     $('#regForm').trigger("reset");
+                                    window.location.href = 'login.php';
                                 }
                             });
 

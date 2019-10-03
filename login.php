@@ -53,7 +53,9 @@ if(isset($_SESSION['userLogin']))
                                                 class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                                                 type="submit" id="login">Sign in</button>
                                             <div class="text-center">
-                                                <a class="small" href="#">Forgot password?</a></div>
+                                                <a class="small" href="#">Forgot password?</a> |
+                                                <a class="small" href="register.php">Register Here</a>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
