@@ -89,13 +89,13 @@ if(isset($_SESSION['userLogin']))
                             if ($.trim(data) === '1') {
                                 Swal.fire({
                                     'title': 'Successful',
-                                    'text': data,
+                                    'text': "User Login Successfully",
                                     'type': 'success',
                                     onClose: () => {
                                         $('#regForm').trigger("reset");
                                         setTimeout(
                                             "window.location.href = 'index.php'",
-                                            2000);
+                                            1500);
                                     }
                                 });
                             } else {
