@@ -13,7 +13,7 @@ if (isset($_GET['vkey'])) {
         $update = $db->prepare("UPDATE users SET verified = 1 WHERE vkey = ? LIMIT 1");
         $updated_result = $update->execute([$vkey]);
         if($updated_result){
-            echo "Account Has Been Verfied!";
+            echo "Account Has Been Verfied! Login Now";
         } else{
             echo "Eror Occured while Verifying Account!";
         } 

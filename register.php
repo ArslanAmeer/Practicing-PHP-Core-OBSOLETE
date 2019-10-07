@@ -83,13 +83,13 @@
         <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
         <script type="text/javascript">
         $(() => {
-            // $('#password, #confirmPassword').on('keyup', function() {
-            //     if ($('#password').val() == $('#confirmPassword').val()) {
-            //         $('#message').html('Confirm Password - Matched').css('color', 'green');
-            //     } else {
-            //         $('#message').html('Confirm Password - Not Matched').css('color', 'red');
-            //     }
-            // });
+            $('#password, #confirmPassword').on('keyup', function() {
+                if ($('#password').val() == $('#confirmPassword').val()) {
+                    $('#message').html('Confirm Password - Matched').css('color', 'green');
+                } else {
+                    $('#message').html('Confirm Password - Not Matched').css('color', 'red');
+                }
+            });
             $("#register_btn").click(function(e) {
                 debugger;
                 var valid = this.form.checkValidity();

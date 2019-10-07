@@ -5,24 +5,29 @@
 
         $name = $_POST["name"];
         $email = $_POST["email"];
-        // $password = $_POST["password"];
+        // Check If Email is registered
+        $exists = userExists($db, $email);
+        if($exists)
+        {
+            $data['msg'] =  "Email Already Registered! ";
+            $data['isError'] =  true;
+            die(json_encode($data));
+        }
         $password = $_POST["password"];
         $con_password = $_POST["confirmPassword"];
+        // Check If Password Did Match
         if ($password !== $con_password) {
-            $data['msg'] =  "REGISTRATION FAILED! Passsword Did Not Match";
+            $data['msg'] =  "Passsword Did Not Match";
             $data['isError'] =  true;
             die(json_encode($data));
         }            
         $phone = $_POST["phone"];
         $vkey = md5(time().$name);
-
+        // After Clearing Above Validation Insert User into Database
         $sql = "INSERT INTO users (fullName, email, password, phone, vkey) VALUES (?,?,?,?,?)";
         $sqlstmnt = $db->prepare($sql);
-        $result = $sqlstmnt->execute([$name, $email, $con_password, $phone, $vkey]);
+        $result = $sqlstmnt->execute([$name, $email, sha1($con_password), $phone, $vkey]);
         if ($result) {
-            // $data['msg'] =  "User Registered Successfully!";
-            // $data['isError'] =  false;
-            // die(json_encode($data));
             $to = $email;
             $subject = "User Account Verification | Arslan Php Demo";
             $message = "<a style='padding: 30px 50px; text-align: center; background-color: lightblue; color: black' href='http://localhost:70/arslan/verify_Account.php?vkey=$vkey'>Verify Your Account</a>";
@@ -53,4 +58,13 @@
         $data['isError'] =  true;
         die(json_encode($data));
     }
+
+
+    function userExists($db, $email)
+{
+    $userQuery = "SELECT * FROM users u WHERE u.email=:email;";
+    $stmt = $db->prepare($userQuery);
+    $stmt->execute(array(':email' => $email));
+    return !!$stmt->fetch(PDO::FETCH_ASSOC);
+}
 ?>
