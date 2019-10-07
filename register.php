@@ -12,6 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>PHP Practice</title>
+        <link rel="stylesheet" href="./assets/css/main.css">
         <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
     </head>
 
@@ -19,38 +20,61 @@
         <!-- A Simple Basic Registration Form -->
         <!-- Registration Form -->
         <div>
-            <form id="regForm">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <h1 class="text-center mt-2">REGISTER HERE</h1>
-                            <hr>
-                            <div class="form-group">
-                                <label for="firstName">First Name:</label>
-                                <input type="text" class="form-control" id="firstName" name="firstName" required>
+            <div class="container-fluid">
+                <div class="row no-gutter">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="login d-flex align-items-center py-5">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-9 col-lg-8 mx-auto">
+                                        <h5 class="login-heading mb-2">Want To See Beauty Around The World!</h5>
+                                        <h3 class="login-heading mb-4">Register Yourself Now!</h3>
+
+                                        <form id="login-form" method="POST">
+
+                                            <div class="form-label-group">
+                                                <input type="name" id="name" name="name" class="form-control"
+                                                    placeholder="Full Name" required autofocus>
+                                                <label for="name">Full Name</label>
+                                            </div>
+
+                                            <div class="form-label-group">
+                                                <input type="email" id="email" name="email" class="form-control"
+                                                    placeholder="Email address" required autofocus>
+                                                <label for="email">Email address</label>
+                                            </div>
+
+                                            <div class="form-label-group">
+                                                <input type="password" id="password" name="password"
+                                                    class="form-control" placeholder="Password" required>
+                                                <label for="password">Password</label>
+                                            </div>
+
+                                            <div class="form-label-group">
+                                                <input type="password" id="confirmPassword" name="confirmPassword"
+                                                    class="form-control" placeholder="Confirm Password" required>
+                                                <label id="message" for="confirmPassword">Confirm Password</label>
+                                            </div>
+                                            <div class="form-label-group">
+                                                <input type="tel" id="phone" name="phone" class="form-control"
+                                                    placeholder="Contact Number" required>
+                                                <label for="phone">Contact Number</label>
+                                            </div>
+
+                                            <button
+                                                class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                                                type="submit" id="register_btn"
+                                                style="border-radius: 25px; font-size: 15px; padding: 12px 0;">Register
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name:</label>
-                                <input type="text" class="form-control" id="lastName" name="lastName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email address:</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone:</label>
-                                <input type="text" class="form-control" id="phone" name="phone" required>
-                            </div>
-                            <input type="submit" name="register" id="register_btn" class="btn btn-primary"
-                                value="Submit" />
                         </div>
                     </div>
+                    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
                 </div>
-            </form>
+            </div>
         </div>
 
         <script src="./assets/js/vendor/jquery-3.4.1.min.js"></script>
@@ -59,51 +83,84 @@
         <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
         <script type="text/javascript">
         $(() => {
+            // $('#password, #confirmPassword').on('keyup', function() {
+            //     if ($('#password').val() == $('#confirmPassword').val()) {
+            //         $('#message').html('Confirm Password - Matched').css('color', 'green');
+            //     } else {
+            //         $('#message').html('Confirm Password - Not Matched').css('color', 'red');
+            //     }
+            // });
             $("#register_btn").click(function(e) {
-                var valid = this.form.checkValidity();
                 debugger;
+                var valid = this.form.checkValidity();
                 if (valid) {
-                    var firstname = $("#firstName").val();
-                    var lastname = $("#lastName").val();
+                    var name = $("#name").val();
                     var email = $("#email").val();
                     var password = $("#password").val();
+                    var confirmPassword = $("#confirmPassword").val();
                     var phone = $("#phone").val();
 
-                    e.preventDefault(e);
+                    if (password != confirmPassword) {
+                        e.preventDefault(e);
+                        Swal.fire({
+                            'title': 'Error',
+                            'text': 'Password & Confirm Password Did Not Match',
+                            'type': 'error'
+                        });
+                    } else {
 
-                    $.ajax({
-                        type: 'POST',
-                        url: 'register_Process.php',
-                        data: {
-                            firstName: firstname,
-                            lastName: lastname,
-                            email: email,
-                            password: password,
-                            phone: phone
-                        },
-                        success: function(data) {
-                            Swal.fire({
-                                'title': 'Successful',
-                                'text': data + "! Verify Your Email",
-                                'type': 'success',
-                                onClose: () => {
-                                    $('#regForm').trigger("reset");
-                                    window.location.href = 'login.php';
+                        e.preventDefault(e);
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'register_Process.php',
+                            data: {
+                                name: name,
+                                email: email,
+                                password: password,
+                                confirmPassword: confirmPassword,
+                                phone: phone
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                debugger;
+                                if (data.isError) {
+                                    Swal.fire({
+                                        'title': 'Error',
+                                        'text': data.msg,
+                                        'type': 'error'
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        'title': 'Successful',
+                                        'text': data.msg,
+                                        'type': 'success',
+                                        onClose: () => {
+                                            $('#regForm').trigger(
+                                                "reset");
+                                            window.location.href =
+                                                'login.php';
+                                        }
+                                    });
                                 }
-                            });
-
-                        },
-                        error: function(e) {
-                            Swal.fire({
-                                'title': 'Error',
-                                'text': 'There were errors while saving the data',
-                                'type': 'error'
-                            })
-                        }
+                            },
+                            error: function(e) {
+                                Swal.fire({
+                                    'title': 'Error',
+                                    'text': 'There were errors while saving the data' +
+                                        e.message,
+                                    'type': 'error'
+                                })
+                            }
+                        });
+                    }
+                } else {
+                    Swal.fire({
+                        'title': 'Error',
+                        'text': 'Entered Data is Not Valid !',
+                        'type': 'error'
                     });
-
-                } else {}
-
+                }
             });
         });
         </script>

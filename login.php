@@ -35,17 +35,18 @@ if(isset($_SESSION['userLogin']))
                                             <div class="form-label-group">
                                                 <input type="email" id="email" name="email" class="form-control"
                                                     placeholder="Email address" required autofocus>
-                                                <label for="inputEmail">Email address</label>
+                                                <label for="email">Email address</label>
                                             </div>
 
                                             <div class="form-label-group">
                                                 <input type="password" id="password" name="password"
                                                     class="form-control" placeholder="Password" required>
-                                                <label for="inputPassword">Password</label>
+                                                <label for="password">Password</label>
                                             </div>
 
                                             <div class="custom-control custom-checkbox mb-3">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                                    name="customCheck1">
                                                 <label class="custom-control-label" for="customCheck1">Remember
                                                     Password</label>
                                             </div>

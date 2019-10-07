@@ -3,18 +3,26 @@
     
     if (isset($_POST)) {
 
-        $firstName = $_POST["firstName"];
-        $lastName = $_POST["lastName"];
+        $name = $_POST["name"];
         $email = $_POST["email"];
         // $password = $_POST["password"];
-        $password = sha1($_POST["password"]);
+        $password = $_POST["password"];
+        $con_password = $_POST["confirmPassword"];
+        if ($password !== $con_password) {
+            $data['msg'] =  "REGISTRATION FAILED! Passsword Did Not Match";
+            $data['isError'] =  true;
+            die(json_encode($data));
+        }            
         $phone = $_POST["phone"];
-        $vkey = md5(time().$firstName);
+        $vkey = md5(time().$name);
 
-        $sql = "INSERT INTO users (firstName, lastName, email, password, phone, vkey) VALUES (?,?,?,?,?,?)";
+        $sql = "INSERT INTO users (fullName, email, password, phone, vkey) VALUES (?,?,?,?,?)";
         $sqlstmnt = $db->prepare($sql);
-        $result = $sqlstmnt->execute([$firstName, $lastName, $email, $password, $phone, $vkey]);
+        $result = $sqlstmnt->execute([$name, $email, $con_password, $phone, $vkey]);
         if ($result) {
+            // $data['msg'] =  "User Registered Successfully!";
+            // $data['isError'] =  false;
+            // die(json_encode($data));
             $to = $email;
             $subject = "User Account Verification | Arslan Php Demo";
             $message = "<a style='padding: 30px 50px; text-align: center; background-color: lightblue; color: black' href='http://localhost:70/arslan/verify_Account.php?vkey=$vkey'>Verify Your Account</a>";
@@ -24,17 +32,25 @@
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
 
             if ( mail($to,$subject,$message,$headers)) {
-                echo "User Register Successfully!";
+                $data['msg'] =  "User Register Successfully! Verify Your Email!";
+            $data['isError'] =  false;
+            die(json_encode($data));
              } else {
-                echo "ERROR while sending Email!";
+                $data['msg'] =  "User Register Successfully! ERROR while Sending EMAIL";
+                $data['isError'] =  false;
+                die(json_encode($data));
              }
 
         } 
         else{
-            echo "Error While Saving Data!";
+            $data['msg'] =  "OOPS! Error While Saving Data!";
+            $data['isError'] =  true;
+            die(json_encode($data));
         }
 
     } else{
-        echo 'No data';
+        $data['msg'] =  "No data!";
+        $data['isError'] =  true;
+        die(json_encode($data));
     }
 ?>
