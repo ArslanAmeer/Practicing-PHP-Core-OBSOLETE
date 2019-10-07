@@ -68,6 +68,9 @@
                                                 <img id="ajax-loading-img" style="display: none"
                                                     src="assets/images/loading-new.gif">
                                             </button>
+                                            <div class="text-center">
+                                                <a class="small" href="login.php">Already A User! Login Then.</a>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
