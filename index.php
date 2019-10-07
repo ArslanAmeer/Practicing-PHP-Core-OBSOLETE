@@ -11,8 +11,7 @@ if(!isset($_SESSION['userLogin']))
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Arslan Demo - PHP</title>
-        <title>PHP Practice</title>
+        <title>Arslan Demo :: Home</title>
         <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
         <link
             href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i|Open+Sans:300,300i,400,400i,700,700i"
