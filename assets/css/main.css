@@ -93,6 +93,24 @@ label {
     color: #777;
 }
 
+#ajax-loading-img {
+    max-height: 45px;
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    bottom: -50px;
+    transform: translateX(-50%);
+}
+
+@media (min-width: 768px) {
+    #ajax-loading-img {
+        left: 105%;
+        bottom: 0;
+        transform: translateX(0);
+    }
+}
+
 /* Fallback for Edge
 -------------------------------------------------- */
 

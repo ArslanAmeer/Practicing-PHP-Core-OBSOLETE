@@ -64,7 +64,9 @@
                                             <button
                                                 class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                                                 type="submit" id="register_btn"
-                                                style="border-radius: 25px; font-size: 15px; padding: 12px 0;">Register
+                                                style="border-radius: 25px; font-size: 15px; padding: 12px 0; position: relative">Register
+                                                <img id="ajax-loading-img" style="display: none"
+                                                    src="assets/images/loading-new.gif">
                                             </button>
                                         </form>
                                     </div>
@@ -90,6 +92,7 @@
                     $('#message').html('Confirm Password - Not Matched').css('color', 'red');
                 }
             });
+            // $("#ajax-loading-img").hide();
             $("#register_btn").click(function(e) {
                 debugger;
                 var valid = this.form.checkValidity();
@@ -122,6 +125,10 @@
                                 phone: phone
                             },
                             dataType: "json",
+                            beforeSend: function() {
+                                $("#ajax-loading-img").show();
+                                $("#login-form :input").prop("disabled", true)
+                            },
                             success: function(data) {
                                 debugger;
                                 if (data.isError) {
@@ -143,6 +150,13 @@
                                         }
                                     });
                                 }
+                            },
+                            complete: function(data) {
+                                $("#ajax-loading-img").hide();
+                                $("#login-form :input").val("");
+                                $("#login-form :input").prop("disabled", false)
+                                $('#message').html('Confirm Password').css('color',
+                                    'unset');
                             },
                             error: function(e) {
                                 Swal.fire({
