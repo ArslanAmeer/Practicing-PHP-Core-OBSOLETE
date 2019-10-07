@@ -27,7 +27,7 @@
                     echo "1";
                 }
             }else{
-                echo "Invalid Email or Password!";
+                echo "No User Found! Recheck Email & Password or Register";
             }
         } else {
             echo "OOPS! An Error Occured!";
