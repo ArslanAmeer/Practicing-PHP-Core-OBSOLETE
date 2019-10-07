@@ -16,15 +16,21 @@
         if ($result) {
             $user = $sqlstmnt->fetch(PDO::FETCH_ASSOC);
             if($sqlstmnt->rowCount() > 0){
-                $_SESSION['userLogin'] = $user;
-                echo "1";
+                if ($user['verified'] == 0) {
+                    // $data['msg'] =  "Verify Your Email First!";
+                    // $data['isError'] =  false;
+                    // die(json_encode($data));
+                    echo "EMAIL NOT VERIFIED! Verify Your Email First!";
+                    die;
+                }else{
+                    $_SESSION['userLogin'] = $user;
+                    echo "1";
+                }
             }else{
-                echo "No User Found! or REGISTER";
+                echo "Invalid Email or Password!";
             }
-        } else 
-        
-        {
-            echo "Error While Saving Data!";
+        } else {
+            echo "OOPS! An Error Occured!";
         }
 
     }else{

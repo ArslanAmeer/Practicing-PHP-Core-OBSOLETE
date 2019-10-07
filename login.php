@@ -96,7 +96,7 @@ if(isset($_SESSION['userLogin']))
                                         $('#regForm').trigger("reset");
                                         setTimeout(
                                             "window.location.href = 'index.php'",
-                                            1500);
+                                            1000);
                                     }
                                 });
                             } else {
