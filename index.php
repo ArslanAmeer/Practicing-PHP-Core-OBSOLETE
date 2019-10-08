@@ -2,7 +2,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['userLogin']))
-    header("Location: login.php");
+    header("Location: views/login.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +18,8 @@ if(!isset($_SESSION['userLogin']))
             rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link rel="stylesheet" href="assets/css/vendor/theme.css">
-        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="./assets/css/vendor/theme.css">
+        <link rel="stylesheet" href="./assets/css/main.css">
     </head>
 
     <body>
@@ -40,13 +40,13 @@ if(!isset($_SESSION['userLogin']))
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php">Login</a>
+                            <a class="nav-link" href="views/login.php">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="register.php">Register</a>
+                            <a class="nav-link" href="views/register.php">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout_Process.php">Logout</a>
+                            <a class="nav-link" href="process/logout_Process.php">Logout</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="portfolio-item.html">Project</a>

@@ -1,6 +1,8 @@
 <?php
-    require_once("config.php");
-    
+    require_once("../helpers/config.php");
+?>
+
+<?php  
     if (isset($_POST)) {
 
         $name = $_POST["name"];
