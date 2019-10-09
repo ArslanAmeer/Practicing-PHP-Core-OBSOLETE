@@ -58,7 +58,7 @@
 
                                             <button
                                                 class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-                                                type="submit" id="register_btn"
+                                                type="button" id="register_btn"
                                                 style="border-radius: 25px; font-size: 15px; padding: 12px 0; position: relative">Register
                                                 <img id="ajax-loading-img" style="display: none"
                                                     src="assets/images/loading-new.gif">
@@ -114,7 +114,7 @@
 
                         $.ajax({
                             type: 'POST',
-                            url: 'register_Process.php',
+                            url: '../process/register_Process.php',
                             data: {
                                 name: name,
                                 email: email,

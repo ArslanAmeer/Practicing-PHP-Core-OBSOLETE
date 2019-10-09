@@ -27,6 +27,7 @@
                         <img id="ajax-loading-img" style="display: none" src="assets/images/loading-new.gif">
                     </button>
                 </form>
+                <a href="login.php"> <sup>Or Login Here!</sup> </a>
             </div>
         </div>
 
@@ -43,7 +44,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: 'passwordReset_Process.php',
+                        url: '../process/passwordReset_Process.php',
                         data: {
                             email: email,
                         },
