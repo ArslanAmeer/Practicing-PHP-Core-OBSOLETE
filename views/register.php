@@ -86,8 +86,8 @@ if(isset($_SESSION['userLogin']))
 
         <script src="../assets/js/vendor/jquery-3.4.1.min.js"></script>
         <script src="../assets/js/vendor/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+        <script src="../assets/js/vendor/sweetalert2.min.js"></script>
+        <script src="../assets/js/vendor/promise-pollyfill.min.js"></script>
         <script type="text/javascript">
         $(() => {
             $('#password, #confirmPassword').on('keyup', function() {

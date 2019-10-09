@@ -12,12 +12,11 @@ if(!isset($_SESSION['userLogin']))
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Arslan Demo :: Home</title>
-        <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
         <link
             href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i|Open+Sans:300,300i,400,400i,700,700i"
             rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/css/vendor/font-awesome.min.css">
         <link rel="stylesheet" href="./assets/css/vendor/theme.css">
         <link rel="stylesheet" href="./assets/css/main.css">
     </head>
@@ -69,8 +68,6 @@ if(!isset($_SESSION['userLogin']))
                 </div>
             </div>
         </nav>
-        <!-- endinject -->
-
 
         <!-- Intro -->
         <div class="intro">
@@ -117,60 +114,52 @@ if(!isset($_SESSION['userLogin']))
             <div class="gallery">
                 <ul class="row">
                     <li class="col-md-3">
-                        <a href="portfolio-item.html">
-                            <img src="https://images.unsplash.com/photo-1504626835342-6b01071d182e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=975855d515c9d56352ee3bfe74287f2b&auto=format&fit=crop&w=750&q=80"
-                                alt="">
+                        <a href="#">
+                            <img src="./assets/images/gallery-img-1.jpg" alt="">
                         </a>
                     </li>
 
                     <li class="col-md-3">
-                        <a href="portfolio-item.html">
-                            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=468a8c18f5d811cf03c654b653b5089e&auto=format&fit=crop&w=750&q=80"
-                                alt="">
+                        <a href="#">
+                            <img src="./assets/images/gallery-img-2.jpg" alt="">
                         </a>
                     </li>
 
                     <li class="col-md-3">
-                        <a href="portfolio-item.html">
-                            <img src="https://images.unsplash.com/photo-1415650328328-1909c4ceabdb?ixlib=rb-0.3.5&s=4cb4e1b2310aa5d2307eff04f113d5f0&auto=format&fit=crop&w=750&q=80"
-                                alt="">
-                        </a>
-                    </li>
-
-
-                    <li class="col-md-3">
-                        <a href="portfolio-item.html">
-                            <img src="https://images.unsplash.com/photo-1442850473887-0fb77cd0b337?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6b527796946e88db3a0ec912ebe1a613&auto=format&fit=crop&w=750&q=80"
-                                alt="">
-                        </a>
-                    </li>
-
-                    <li class="col-md-3">
-                        <a href="portfolio-item.html">
-                            <img src="https://images.unsplash.com/photo-1495339647587-9021d80165d4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=79a0f3149dfec84464e0506f5ccb9107&auto=format&fit=crop&w=750&q=80"
-                                alt="">
-                        </a>
-                    </li>
-
-                    <li class="col-md-3">
-                        <a href="portfolio-item.html">
-                            <img src="https://images.unsplash.com/photo-1506852613309-def986635d7e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f8b18461ac8b3abab7e7188eb342d8e1&auto=format&fit=crop&w=750&q=80"
-                                alt="">
+                        <a href="#">
+                            <img src="./assets/images/gallery-img-3.jpg" alt="">
                         </a>
                     </li>
 
 
                     <li class="col-md-3">
-                        <a href="portfolio-item.html">
-                            <img src="https://images.unsplash.com/photo-1430915860098-2e303ffb8276?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f46f45c52d542e4b7cba47f1709cc98c&auto=format&fit=crop&w=750&q=80"
-                                alt="">
+                        <a href="#">
+                            <img src="./assets/images/gallery-img-4.webp" alt="">
                         </a>
                     </li>
 
                     <li class="col-md-3">
-                        <a href="portfolio-item.html">
-                            <img src="https://images.unsplash.com/photo-1430263431647-7bed9f792e72?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2f8e40576370da12b7f4c8c97f4a5044&auto=format&fit=crop&w=750&q=80"
-                                alt="">
+                        <a href="#">
+                            <img src="./assets/images/gallery-img-5.jpg" alt="">
+                        </a>
+                    </li>
+
+                    <li class="col-md-3">
+                        <a href="#">
+                            <img src="./assets/images/gallery-img-6.jpg" alt="">
+                        </a>
+                    </li>
+
+
+                    <li class="col-md-3">
+                        <a href="#">
+                            <img src="./assets/images/gallery-img-7.jpg" alt="">
+                        </a>
+                    </li>
+
+                    <li class="col-md-3">
+                        <a href="#">
+                            <img src="./assets/images/gallery-img-8.jpg" alt="">
                         </a>
                     </li>
 
