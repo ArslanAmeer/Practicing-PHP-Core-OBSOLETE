@@ -24,7 +24,7 @@
                     </div>
                     <button id="submit" type="submit" class="btn btn-primary mb-2 ml-2 position-relative">Recover
                         Password
-                        <img id="ajax-loading-img" style="display: none" src="assets/images/loading-new.gif">
+                        <img id="ajax-loading-img" style="display: none" src="../assets/images/loading-new.gif">
                     </button>
                 </form>
                 <a href="login.php"> <sup>Or Login Here!</sup> </a>
@@ -61,7 +61,7 @@
                                     onClose: () => {
                                         $('form').trigger("reset");
                                         setTimeout(
-                                            "window.location.href = 'login.php'",
+                                            "window.location.href = '../login.php'",
                                             1000);
                                     }
                                 });

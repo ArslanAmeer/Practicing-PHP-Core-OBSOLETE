@@ -1,3 +1,10 @@
+<!-- PHP Important Short Script Here -->
+<?php
+session_start();
+if(isset($_SESSION['userLogin']))
+    header("Location: ../index.php");
+?>
+
 <!-- HTML DOCUMENT STARTS HERE -->
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +68,7 @@
                                                 type="button" id="register_btn"
                                                 style="border-radius: 25px; font-size: 15px; padding: 12px 0; position: relative">Register
                                                 <img id="ajax-loading-img" style="display: none"
-                                                    src="assets/images/loading-new.gif">
+                                                    src="../assets/images/loading-new.gif">
                                             </button>
                                             <div class="text-center">
                                                 <a class="small" href="login.php">Already A User! Login Then.</a>
