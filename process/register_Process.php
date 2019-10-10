@@ -30,9 +30,22 @@
         $sqlstmnt = $db->prepare($sql);
         $result = $sqlstmnt->execute([$name, $email, sha1($con_password), $phone, $vkey]);
         if ($result) {
+            $variables = array();
+            $variables['username'] = $name;
+            $variables['email'] = $email;
+            $variables['verificationkey'] = $vkey;
+
+            $template = file_get_contents("../assets/templates/email.html");
+
+            foreach($variables as $key => $value)
+            {
+                $template = str_replace($key, $value, $template);
+            }
+
             $to = $email;
             $subject = "User Account Verification | Arslan Php Demo";
-            $message = "<a style='padding: 30px 50px; text-align: center; background-color: lightblue; color: black' href='http://localhost:70/arslan/verify_Account.php?vkey=$vkey'>Verify Your Account</a>";
+            // $message = "<a style='padding: 30px 50px; text-align: center; background-color: lightblue; color: black' href='http://localhost:70/arslan/verify_Account.php?vkey=$vkey'>Verify Your Account</a>";
+            $message = $template;
             $headers = "From: lk2712.svcs@gmail.com\r\n";
             // Set content-type header for sending HTML email 
             $headers .= "MIME-Version: 1.0" . "\r\n"; 
@@ -40,14 +53,13 @@
 
             if ( mail($to,$subject,$message,$headers)) {
                 $data['msg'] =  "User Register Successfully! Verify Your Email!";
-            $data['isError'] =  false;
+                $data['isError'] =  false;
             die(json_encode($data));
-             } else {
+            } else {
                 $data['msg'] =  "User Register Successfully! ERROR while Sending EMAIL";
                 $data['isError'] =  false;
                 die(json_encode($data));
-             }
-
+            }
         } 
         else{
             $data['msg'] =  "OOPS! Error While Saving Data!";
