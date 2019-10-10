@@ -39,7 +39,7 @@
                     exit;
                 }
             }else{
-                echo "Invalid Email or Password!";
+                echo "Invalid Email or Email Not Registered";
                 exit;
             }
         } else {

@@ -77,9 +77,7 @@
                         complete: function(data) {
                             $("#ajax-loading-img").hide();
                             $("#recovery-form :input").val("");
-                            $("#recovery-form :input").prop("disabled", false)
-                            $('#message').html('Confirm Password').css('color',
-                                'unset');
+                            $("#recovery-form :input").prop("disabled", false);
                         },
                         error: function(e) {
                             Swal.fire({
