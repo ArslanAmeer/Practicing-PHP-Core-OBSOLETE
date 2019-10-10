@@ -37,16 +37,25 @@ if(!isset($_SESSION['userLogin']))
                         <li class="nav-item active">
                             <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                         </li>
+                        <!-- PHP Script - Link based on User Login -->
+                        <?php
+                            if (!isset($_SESSION['userLogin'])) {
+                                echo ' <li class="nav-item">
+                                            <a class="nav-link" href="views/login.php">Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="views/register.php">Register</a>
+                                        </li>';
+                            } else {
+                                echo '<li class="nav-item">
+                                            <a class="nav-link" href="process/logout_Process.php">Logout</a>
+                                        </li>';
+                            }
+                            
+                        ?>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="views/login.php">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="views/register.php">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="process/logout_Process.php">Logout</a>
-                        </li>
+
+
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="portfolio-item.html">Project</a>
                         </li> -->
