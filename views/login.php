@@ -1,8 +1,9 @@
 <!-- PHP Important Short Script Here -->
 <?php
-session_start();
-if(isset($_SESSION['userLogin']))
-    header("Location: ../index.php");
+    session_start();
+    if (isset($_SESSION['userLogin'])) {
+        header("Location: ../index.php");
+    }
 ?>
 
 <!-- HTML DOCUMENT STARTS HERE -->
@@ -34,20 +35,25 @@ if(isset($_SESSION['userLogin']))
                                         <form id="login-form">
                                             <div class="form-label-group">
                                                 <input type="email" id="email" name="email" class="form-control"
-                                                    placeholder="Email address" required autofocus>
+                                                    placeholder="Email address"
+                                                    value="<?php if(isset($_COOKIE["loginId"])) { echo $_COOKIE["loginId"]; } ?>"
+                                                    required>
                                                 <label for="email">Email address</label>
                                             </div>
 
                                             <div class="form-label-group">
                                                 <input type="password" id="password" name="password"
-                                                    class="form-control" placeholder="Password" required>
+                                                    class="form-control" placeholder="Password"
+                                                    value="<?php if(isset($_COOKIE["loginPass"])) { echo $_COOKIE["loginPass"]; } ?>"
+                                                    required>
                                                 <label for="password">Password</label>
                                             </div>
 
                                             <div class="custom-control custom-checkbox mb-3">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1"
-                                                    name="customCheck1">
-                                                <label class="custom-control-label" for="customCheck1">Remember
+                                                <input type="checkbox" class="custom-control-input" id="rememberMe"
+                                                    name="rememberMe"
+                                                    <?php if(isset($_COOKIE["lastRemember"]) && $_COOKIE["lastRemember"] == "true") {echo "checked";} ?>>
+                                                <label class="custom-control-label" for="rememberMe">Remember
                                                     Password</label>
                                             </div>
                                             <button
@@ -75,16 +81,17 @@ if(isset($_SESSION['userLogin']))
             $("#login").click(function(e) {
                 var valid = this.form.checkValidity();
                 if (valid) {
+                    e.preventDefault(e);
                     var email = $("#email").val();
                     var password = $("#password").val();
-                    e.preventDefault(e);
-
+                    var rememberMe = $("#rememberMe").is(":checked");
                     $.ajax({
                         type: 'POST',
                         url: '../process/login_Process.php',
                         data: {
                             email: email,
                             password: password,
+                            rememberMe: rememberMe
                         },
                         success: function(data) {
                             if ($.trim(data) === '1') {
@@ -117,7 +124,13 @@ if(isset($_SESSION['userLogin']))
                         }
                     });
 
-                } else {}
+                } else {
+                    Swal.fire({
+                        'title': 'Error',
+                        'text': 'Invalid Data Entered!',
+                        'type': 'error'
+                    })
+                }
 
             });
         });
