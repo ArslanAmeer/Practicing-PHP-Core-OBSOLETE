@@ -1,9 +1,10 @@
 <!-- PHP File Required / Include Here -->
 <?php
     include_once "./helpers/subview.php";
+    header("Location: views/UserManagement.php"); 
     session_start();
     if(!isset($_SESSION['userLogin']))
-        header("Location: views/login.php");
+        // header("Location: views/login.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +19,7 @@
             rel="stylesheet">
         <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
         <link rel="stylesheet" href="./assets/css/vendor/font-awesome.min.css">
+        <link rel="stylesheet" href="./assets/css/vendor/datatables.min.css">
         <link rel="stylesheet" href="./assets/css/vendor/theme.css">
         <link rel="stylesheet" href="./assets/css/main.css">
     </head>
@@ -167,6 +169,7 @@
 
         <script src="./assets/js/vendor/jquery-3.4.1.min.js"></script>
         <script src="./assets/js/vendor/bootstrap.min.js"></script>
+        <script src="./assets/js/vendor/datatables.min.js"></script>
         <script src="./assets/js/scripts.js"></script>
     </body>
 

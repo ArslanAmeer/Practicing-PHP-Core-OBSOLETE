@@ -15,10 +15,10 @@
                 <?php
                     if (!isset($_SESSION['userLogin'])) {
                         echo ' <li class="nav-item">
-                                    <a class="nav-link" href="views/login.php">Login</a>
+                                    <a class="nav-link" href="login.php">Login</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="views/register.php">Register</a>
+                                    <a class="nav-link" href="register.php">Register</a>
                                 </li>';
                     } else {
                         echo '<li class="nav-item">

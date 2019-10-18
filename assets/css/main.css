@@ -137,3 +137,17 @@ label {
         color: #777;
     }
 }
+
+/* --------------
+-- UMS Page CSS--
+----------------*/
+
+body#user-management {
+    background-color: rgb(161, 161, 161);
+}
+
+
+body#user-management main {
+    margin-top: 95px;
+    padding: 40px 0;
+}
