@@ -217,8 +217,22 @@
                             });
                         }
                     })
-                }
+            }
 
+            function validateForm(formName) {
+                var fields = ["name", "email"]
+                // var formC = "'" + formName + "'";
+                var i, l = fields.length;
+                var fieldname;
+                for (i = 0; i < l; i++) {
+                    fieldname = fields[i];
+                    if (document.forms[formName][fieldname].value === "") {
+                        alert(fieldname + " can not be empty");
+                        return false;
+                    }
+                }
+                return true;
+            }      
         </script>
     </body>
 
