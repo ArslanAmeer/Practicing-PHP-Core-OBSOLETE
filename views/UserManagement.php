@@ -99,21 +99,20 @@
         <script src="../assets/js/vendor/bootstrap.min.js"></script>
         <script src="../assets/js/vendor/datatables.min.js"></script>
         <script src="../assets/js/vendor/sweetalert2.min.js"></script>
-        <script src="../assets/js/vendor/promise-pollyfill.min.js"></script>
         <script src="../assets/js/scripts.js"></script>
         <script>
-        $(document).ready(function() {
+            $(document).ready(function () {
 
-            // Content Managment Scripting Here
+                // Content Managment Scripting Here
 
-            var dataTable = $('#userTable').DataTable({
-                'processing': true,
-                'serverSide': true,
-                'serverMethod': 'post',
-                'ajax': {
-                    'url': '../process/Users_Management/UM_Read.php'
-                },
-                'columns': [{
+                var dataTable = $('#userTable').DataTable({
+                    'processing': true,
+                    'serverSide': true,
+                    'serverMethod': 'post',
+                    'ajax': {
+                        'url': '../process/Users_Management/UM_Read.php'
+                    },
+                    'columns': [{
                         data: 'id'
                     },
                     {
@@ -127,84 +126,99 @@
                     },
                     {
                         data: "id",
-                        render: function(id, type, full, meta) {
-                            return '<a href="#" onclick="EditData(this)">Edit</a> | <a href="#" onclick="DeleteData(' +
-                                id +
-                                ')">Delete</a>';
+                        render: function (id, type, full, meta) {
+                            return '<a href="#" onclick="EditData(this)">Edit</a> | <a id="delete" href="#" onclick="DeleteData(' +
+                                id + ')">Delete</a>';
                         }
                     }
-                ]
-            });
+                    ]
+                });
 
-            $("#addBtn").click(() => {
-                $("#my-modal").modal('show');
-                $("#id").val(' Auto');
-                $("#name").val('');
-                $("#email").val('');
-                $("#add").show();
-                $("#update").hide();
-            });
+                $("#addBtn").click(() => {
+                    $("#my-modal").modal('show');
+                    $("#id").val(' Auto');
+                    $("#name").val('');
+                    $("#email").val('');
+                    $("#add").show();
+                    $("#update").hide();
+                });
 
-            $("#update").click(() => {
-                var valid = validateForm("cm-form");
-                if (valid) {
-                    var userData = {
-                        id: $("#id").val(),
-                        fullName: $("#name").val(),
-                        email: $("#email").val()
+                $("#update").click(() => {
+                    var valid = validateForm("cm-form");
+                    if (valid) {
+                        var userData = {
+                            id: $("#id").val(),
+                            fullName: $("#name").val(),
+                            email: $("#email").val()
+                        }
+                        console.dir(userData);
+                        $.ajax({
+                            url: "../process/Users_Management/UM_Update.php",
+                            method: 'POST',
+                            data: userData,
+                            success: function (data) {
+                                $("#my-modal").modal('hide');
+                                Swal.fire({
+                                    'title': 'Successful',
+                                    'text': data,
+                                    'type': 'success',
+                                    onClose: () => {
+                                        dataTable.ajax.reload();
+                                    }
+                                });
+                            }
+                        });
                     }
-                    console.dir(userData);
-                    $.ajax({
-                        url: "../process/Users_Management/UM_Update.php",
-                        method: 'POST',
-                        data: userData,
-                        success: function(data) {
-                            $("#my-modal").modal('hide');
-                            Swal.fire({
-                                'title': 'Successful',
-                                'text': data,
-                                'type': 'success',
-                                onClose: () => {
-                                    dataTable.ajax.reload();
+                });
+                
+            });
+
+            function EditData(data) {
+                $("#insert").hide();
+                $("#update").show();
+                var id = $(data).closest('tr').find('td:eq(0)').text();
+                var name = $(data).closest('tr').find('td:eq(1)').text();
+                var email = $(data).closest('tr').find('td:eq(2)').text();
+                $("#my-modal").modal('show');
+                $("#id").val(id);
+                $("#name").val(name);
+                $("#email").val(email);
+            }
+
+            function DeleteData(id) {
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "../process/Users_Management/UM_Delete.php?id=" + id,
+                                type: "GET",
+                                cache: false,
+                                success: function (data) {
+                                    $("#my-modal").modal('hide');
+                                    Swal.fire({
+                                        'title': 'Deleted!',
+                                        'text': data,
+                                        'type': 'success',
+                                        onClose: () => {
+                                            location.reload();
+                                        }
+                                    });
+                                },
+                                error: function (errormessage) {
+                                    alert(errormessage.responseText);
                                 }
                             });
-
                         }
-                    });
+                    })
                 }
-            });
-        });
 
-        function EditData(data) {
-            $("#insert").hide();
-            $("#update").show();
-            var id = $(data).closest('tr').find('td:eq(0)').text();
-            var name = $(data).closest('tr').find('td:eq(1)').text();
-            var email = $(data).closest('tr').find('td:eq(2)').text();
-            $("#my-modal").modal('show');
-            $("#id").val(id);
-            $("#name").val(name);
-            $("#email").val(email);
-        }
-
-        function DeleteData(id) {
-            alert(id);
-        }
-
-        function validateForm(formName) {
-            var fields = ["name", "email"]
-            // var formC = "'" + formName + "'";
-            var i, l = fields.length;
-            var fieldname;
-            for (i = 0; i < l; i++) {
-                fieldname = fields[i];
-                if (document.forms[formName][fieldname].value === "") {
-                    alert(fieldname + " can not be empty");
-                    return false;
-                }
-            }
-            return true;
-        }
         </script>
     </body>
 
