@@ -1,6 +1,9 @@
 <!-- PHP File Required / Include Here -->
 <?php
     include_once "../helpers/subview.php";
+    session_start();
+    if(!isset($_SESSION['userLogin']))
+        header("Location: views/login.php");
 ?>
 <!-- HTML Document Starts Here -->
 <!DOCTYPE html>
@@ -34,11 +37,18 @@
                             <mark> Basic CRUD Operations in CorePHP </mark>
                         </h4>
                         <p class="text-center"> Content Managment </p>
-                        <button id="addBtn" class="btn btn-primary"> Add</button>
+                        <hr>
                     </div>
-                    <hr>
+                    <div class="col-md-6">
+                        <a href="UserManagement.php" class="btn btn-primary btn-block" type="button">User Management</a> 
+                    </div>
+                    <div class="col-md-6">
+                        <a href="ContentManagment.php" class="btn btn-primary btn-block" type="button">Content Managment</a> 
+                    </div>
                     <!-- Datatable here -->
                     <div class="col-12">
+                        <hr>
+                        <div class="text-center"> <button id="addBtn" class="btn btn-success"> Add</button> </div>
                         <hr>
                         <!-- Table -->
                         <table id='userTable' class='table table-bordered table-hover table-striped'>
@@ -139,7 +149,7 @@
                         sortable: false,
                         render: function (id, type, full, meta) {
                             return '<a href="#" onclick="EditData(this)">Edit</a> | <a id="delete" href="#" onclick="DeleteData(' +
-                                id + ')">Delete</a>';
+                                id + ')">Delete</>';
                         }
                     }
                     ]

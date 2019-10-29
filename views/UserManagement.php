@@ -1,6 +1,9 @@
 <!-- PHP File Required / Include Here -->
 <?php
     include_once "../helpers/subview.php";
+    session_start();
+    if(!isset($_SESSION['userLogin']))
+        header("Location: views/login.php");
 ?>
 <!-- HTML Document Starts Here -->
 <!DOCTYPE html>
@@ -33,6 +36,14 @@
                         <h4 class="text-center">
                             <mark> Basic CRUD Operations in CorePHP </mark>
                         </h4>
+                        <p class="text-center"> User Managment </p>
+                        <hr>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="UserManagement.php" class="btn btn-primary btn-block" type="button">User Management</a> 
+                    </div>
+                    <div class="col-md-6">
+                        <a href="ContentManagment.php" class="btn btn-primary btn-block" type="button">Content Managment</a> 
                     </div>
                     <hr>
                     <!-- Datatable here -->
