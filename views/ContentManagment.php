@@ -3,7 +3,7 @@
     include_once "../helpers/subview.php";
     session_start();
     if(!isset($_SESSION['userLogin']))
-        header("Location: views/login.php");
+        header("Location: login.php");
 ?>
 <!-- HTML Document Starts Here -->
 <!DOCTYPE html>
@@ -40,15 +40,15 @@
                         <hr>
                     </div>
                     <div class="col-md-6">
-                        <a href="UserManagement.php" class="btn btn-primary btn-block" type="button">User Management</a> 
+                        <a href="UserManagement.php" class="btn btn-dark btn-block" type="button">User Management</a> 
                     </div>
                     <div class="col-md-6">
-                        <a href="ContentManagment.php" class="btn btn-primary btn-block" type="button">Content Managment</a> 
+                        <a href="ContentManagment.php" class="btn btn-dark btn-block" type="button">Content Managment</a> 
                     </div>
                     <!-- Datatable here -->
                     <div class="col-12">
                         <hr>
-                        <div class="text-center"> <button id="addBtn" class="btn btn-success"> Add</button> </div>
+                        <div class="text-center"> <button id="addBtn" class="btn btn-outline-dark"> Add</button> </div>
                         <hr>
                         <!-- Table -->
                         <table id='userTable' class='table table-bordered table-hover table-striped'>

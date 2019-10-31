@@ -1,10 +1,10 @@
 <!-- PHP File Required / Include Here -->
 <?php
     include_once "./helpers/subview.php";
-    header("Location: views/UserManagement.php"); 
+    // header("Location: views/UserManagement.php"); 
     session_start();
     if(!isset($_SESSION['userLogin']))
-        // header("Location: views/login.php");
+        header("Location: views/login.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +25,42 @@
     </head>
 
     <body>
-        <!-- Inject Navbar Here -->
-        <?php subview('navbar.php'); ?>
+    <nav class="navbar navbar-expand-md navbar-custom fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">ARSLAN</a>
+        <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault"
+            aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsDefault">
+            <ul class="navbar-custom navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <!-- PHP Script - Link based on User Login -->
+                <?php
+                if ($_SESSION['userLogin']['roleId'] == 1) {
+                    echo ' <li class="nav-item">
+                                    <a class="nav-link" href="views/ContentManagment.php">Panel</a>
+                                </li>';
+                }
+                    if (!isset($_SESSION['userLogin'])) {
+                        echo ' <li class="nav-item">
+                                    <a class="nav-link" href="views/login.php">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="views/register.php">Register</a>
+                                </li>';
+                    } else {
+                        echo '<li class="nav-item">
+                                    <a class="nav-link" href="process/logout_Process.php">Logout</a>
+                                </li>';
+                    }
+                ?>
+            </ul>
+        </div>
+    </div>
+</nav>
 
         <!-- Intro -->
         <div class="intro">
@@ -47,7 +81,8 @@
                 </div>
             </div>
         </div>
-
+        
+        <p style="color: red"> <?php print_r($_SESSION['userLogin']['roleId']); ?> </p>
         <!-- About -->
         <section id="pageid">
             <div class="container content-section text-center">
