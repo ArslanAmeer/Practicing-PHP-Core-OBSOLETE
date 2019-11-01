@@ -56,6 +56,7 @@
             "id" => $row['id'],
             "fullName" => $row['fullName'],
             "email" => $row['email'],
+            "roleId" => $row['roleId'] == 1 ? 'Admin':'Guest',
             "joining_date" => $row['joining_date'],
         );
     }

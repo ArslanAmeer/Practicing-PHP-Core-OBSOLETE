@@ -56,6 +56,7 @@
                                     <th>Id</th>
                                     <th>Full Name</th>
                                     <th>Email</th>
+                                    <th>Role</th>
                                     <th>Joining Date</th>
                                     <th>Actions</th>
                                 </tr>
@@ -130,6 +131,9 @@
                     },
                     {
                         data: 'email'
+                    },
+                    {
+                        data: 'roleId'
                     },
                     {
                         data: 'joining_date'
