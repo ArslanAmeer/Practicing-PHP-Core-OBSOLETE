@@ -26,6 +26,7 @@ if (isset($_POST)) {
                 die;
             } else {
                 $_SESSION['userLogin'] = $user;
+                $_SESSION['timestamp']=time();
                 if ($rememberMe == 'true') {
                     setcookie("loginId", $user['email'], time() + (10 * 365 * 24 * 60 * 60),"/",false);
                     setcookie("loginPass", $user['password'] == $enc_password ? $password : $enc_password, time() + (10 * 365 * 24 * 60 * 60),"/",false);

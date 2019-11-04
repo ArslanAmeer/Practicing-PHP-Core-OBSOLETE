@@ -1,10 +1,12 @@
 <!-- PHP File Required / Include Here -->
 <?php
     include_once "./helpers/subview.php";
+    include_once "./helpers/helpers.php";
     // header("Location: views/UserManagement.php"); 
     session_start();
     if(!isset($_SESSION['userLogin']))
         header("Location: views/login.php");
+    checkSessionActive();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,23 +41,23 @@
                 </li>
                 <!-- PHP Script - Link based on User Login -->
                 <?php
-                if ($_SESSION['userLogin']['roleId'] == 1) {
+                if (isset($_SESSION['userLogin']) && $_SESSION['userLogin']['roleId'] == 1) {
                     echo ' <li class="nav-item">
                                     <a class="nav-link" href="views/ContentManagment.php">Panel</a>
                                 </li>';
                 }
-                    if (!isset($_SESSION['userLogin'])) {
-                        echo ' <li class="nav-item">
-                                    <a class="nav-link" href="views/login.php">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="views/register.php">Register</a>
-                                </li>';
-                    } else {
-                        echo '<li class="nav-item">
-                                    <a class="nav-link" href="process/logout_Process.php">Logout</a>
-                                </li>';
-                    }
+                if (!isset($_SESSION['userLogin'])) {
+                    echo ' <li class="nav-item">
+                                <a class="nav-link" href="views/login.php">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="views/register.php">Register</a>
+                            </li>';
+                } else {
+                    echo '<li class="nav-item">
+                                <a class="nav-link" href="process/logout_Process.php">Logout</a>
+                            </li>';
+                }
                 ?>
             </ul>
         </div>
@@ -82,7 +84,6 @@
             </div>
         </div>
         
-        <p style="color: red"> <?php print_r($_SESSION['userLogin']['roleId']); ?> </p>
         <!-- About -->
         <section id="pageid">
             <div class="container content-section text-center">
