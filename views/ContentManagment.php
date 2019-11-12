@@ -132,11 +132,15 @@
                         data: 'title'
                     },
                     {
-                        data: 'caption'
+                        data: 'caption',
+                        sortable: false
                     },
                     {
-                        data: 'imageUrl',
-                        sortable: false
+                        data: "imageUrl",
+                        sortable: false,
+                        render: function (url, type, full, meta) {
+                            return '<img src="'+url+'" alt="content_img" style="max-width: 50px">';
+                        }
                     },
                     {
                         data: 'fullName'
