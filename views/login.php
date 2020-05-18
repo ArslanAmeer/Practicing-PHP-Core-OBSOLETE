@@ -80,60 +80,81 @@
         $(() => {
             $("#login").click(function(e) {
                 var valid = this.form.checkValidity();
-                if (valid) {
-                    e.preventDefault(e);
-                    var email = $("#email").val();
-                    var password = $("#password").val();
-                    var rememberMe = $("#rememberMe").is(":checked");
-                    $.ajax({
-                        type: 'POST',
-                        url: '../process/login_Process.php',
-                        data: {
-                            email: email,
-                            password: password,
-                            rememberMe: rememberMe
-                        },
-                        success: function(data) {
-                            if ($.trim(data) === '1') {
-                                Swal.fire({
-                                    'title': 'Successful',
-                                    'text': "User Login Successfully",
-                                    'type': 'success',
-                                    onClose: () => {
-                                        $('#regForm').trigger("reset");
-                                        setTimeout(
-                                            "window.location.href = '../index.php'",
-                                            1000);
-                                    }
-                                });
-                            } else {
-                                Swal.fire({
-                                    'title': 'ERROR',
-                                    'text': data,
-                                    'type': 'error',
+                    if (valid) {
+                        e.preventDefault(e);
+                        login();
 
-                                });
+                    } else {
+                        Swal.fire({
+                            'title': 'Error',
+                            'text': 'Invalid Data Entered!',
+                            'type': 'error'
+                        })
+                    }
+            });
+
+            $("#password").on('keypress',function(e) {
+                if(e.which == 13) {
+                    var valid = $("#login-form")[0].checkValidity();
+                    if (valid) {
+                        e.preventDefault(e);
+                        login();
+
+                    } else {
+                        Swal.fire({
+                            'title': 'Error',
+                            'text': 'Invalid Data Entered!',
+                            'type': 'error'
+                        })
+                    }
+                }
+            });
+        });
+
+        function login() {
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var rememberMe = $("#rememberMe").is(":checked");
+            $.ajax({
+                type: 'POST',
+                url: '../process/login_Process.php',
+                data: {
+                    email: email,
+                    password: password,
+                    rememberMe: rememberMe
+                },
+                success: function(data) {
+                    if ($.trim(data) === '1') {
+                        Swal.fire({
+                            'title': 'Successful',
+                            'text': "User Login Successfully",
+                            'type': 'success',
+                            onClose: () => {
+                                $('#regForm').trigger("reset");
+                                setTimeout(
+                                    "window.location.href = '../index.php'",
+                                    1000);
                             }
-                        },
-                        error: function(e) {
-                            Swal.fire({
-                                'title': 'Error',
-                                'text': 'There were errors while Login',
-                                'type': 'error'
-                            })
-                        }
-                    });
+                        });
+                    } else {
+                        Swal.fire({
+                            'title': 'ERROR',
+                            'text': data,
+                            'type': 'error',
 
-                } else {
+                        });
+                    }
+                },
+                error: function(e) {
                     Swal.fire({
                         'title': 'Error',
-                        'text': 'Invalid Data Entered!',
+                        'text': 'There were errors while Login',
                         'type': 'error'
                     })
                 }
-
             });
-        });
+        }
+        
         </script>
     </body>
 

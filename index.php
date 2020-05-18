@@ -43,7 +43,7 @@
                 <?php
                 if (isset($_SESSION['userLogin']) && $_SESSION['userLogin']['roleId'] == 1) {
                     echo ' <li class="nav-item">
-                                    <a class="nav-link" href="views/ContentManagment.php">Panel</a>
+                                    <a class="nav-link" href="views/UserManagement.php">Panel</a>
                                 </li>';
                 }
                 if (!isset($_SESSION['userLogin'])) {
@@ -91,10 +91,10 @@
                     <div class="col-md-8">
                         <h2 class="d-block">LIL' ABOUT ME</h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae suscipit numquam alias illum
-                            atque. Asperiores, tempore non? Quod vitae enim reprehenderit adipisci temporibus
-                            accusantium quia modi, eum aperiam natus illo. <a href="#">quis</a> laoreet leo. Maecenas
-                            eget ante ipsum.
+                            Hi, This is just a random homepage, to demonstrate my work on Core Php.
+                            Worked on User registeration, login, account verification over email, sessions and user managment.
+                            Just for demonstartion. 
+                            To login as admin use <b>Email:</b> admin@admin.com | <b>Password:</b> admin12345
                         </p>
                         <p>
                             <a href="#" class="btnghost"><i class="fa fa-download"></i> Curriculum Vitae</a>
